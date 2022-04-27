@@ -1,0 +1,4 @@
+SRC += muse.c
+
+UNICODEMAP_ENABLE = yes
+DIP_SWITCH_ENABLE = no
