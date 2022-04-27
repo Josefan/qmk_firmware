@@ -169,7 +169,7 @@ layer_state_t layer_state_set_user(layer_state_t state) {
 }
 
 /* OLED Animations etc */
-#ifdef OLED_DRIVER_ENABLE
+#ifdef OLED_ENABLE
 
 /* 32 * 32 logo
 static void render_logo(void) {
@@ -189,6 +189,7 @@ static void render_logo(void) {
 */
 
 /* 32 * 14 os logos */
+/*
 static const char PROGMEM windows_logo[] = {
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0xbc, 0xbc, 0xbe, 0xbe, 0x00,
     0xbe, 0xbe, 0xbf, 0xbf, 0xbf, 0xbf, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
@@ -202,7 +203,7 @@ static const char PROGMEM mac_logo[] = {
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x01, 0x07, 0x0f, 0x1f, 0x1f,
     0x0f, 0x0f, 0x1f, 0x1f, 0x0f, 0x06, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00
 };
-
+*/
 /* KEYBOARD PET START */
 
 /* settings */
@@ -474,7 +475,7 @@ oled_rotation_t oled_init_user(oled_rotation_t rotation) {
     return OLED_ROTATION_270;
 }
 
-void oled_task_user(void) {
+bool oled_task_user(void) {
 
     /* KEYBOARD PET VARIABLES START */
     current_wpm = get_current_wpm();
@@ -486,6 +487,7 @@ void oled_task_user(void) {
     } else {
         print_logo_narrow();
     }
+    return false;
 }
 #endif
 
@@ -544,14 +546,14 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
     /* KEYBOARD PET STATUS START */
     case UC_LNX:
         if (is_keyboard_master()) {
-            oled_set_cursor(0,0);
-            oled_write_raw_P(mac_logo, sizeof(mac_logo));
+            //oled_set_cursor(0,0);
+            //oled_write_raw_P(mac_logo, sizeof(mac_logo));
         }
         break;
     case UC_WINC:
         if (is_keyboard_master()) {
-            oled_set_cursor(0,0);
-            oled_write_raw_P(windows_logo, sizeof(windows_logo));
+            //oled_set_cursor(0,0);
+            //oled_write_raw_P(windows_logo, sizeof(windows_logo));
         }
         break;
     case KC_LCTL:

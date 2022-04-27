@@ -23,7 +23,7 @@ BOOTLOADER = atmel-dfu
 
 EXTRAKEY_ENABLE = yes       # Audio control and System control
 UNICODEMAP_ENABLE = yes
-OLED_DRIVER_ENABLE = yes
+OLED_ENABLE = yes
 WPM_ENABLE = yes
 
 # RGB Matrix
