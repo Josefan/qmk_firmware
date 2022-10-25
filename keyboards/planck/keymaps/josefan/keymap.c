@@ -54,14 +54,14 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  * |------+------+------+------+------+------+------+------+------+------+------+------|
  * | Shift|   Z  |   X  |   C  |   V  |   B  |   N  |   M  |   ,  |   .  |   /  | Del  |
  * |------+------+------+------+------+------+------+------+------+------+------+------|
- * |BACKLIT| Esc | LAlt  | GUI  | Space/Lower| Enter/Raise | GUI  | RAlt | Left | Right|
+ * |      | Esc | LAlt  | GUI  | Space/Lower | Enter/Raise | GUI  | RAlt | Left | Right|
  * `-----------------------------------------------------------------------------------'
  */
 [_QWERTY] = LAYOUT_planck_grid(
-    KC_TAB,  KC_Q,    KC_W,    KC_E,    KC_R,    KC_T,    KC_Y,    KC_U,    KC_I,    KC_O,    KC_P,    KC_BSPC,
-    KC_LCTL, KC_A,    KC_S,    KC_D,    KC_F,    KC_G,    KC_H,    KC_J,    KC_K,    KC_L,    KC_SCLN, KC_QUOT,
-    KC_LSFT, KC_Z,    KC_X,    KC_C,    KC_V,    KC_B,    KC_N,    KC_M,    KC_COMM, KC_DOT,  KC_SLSH, KC_DEL,
-    BACKLIT, KC_ESC,  KC_LALT, KC_LGUI, _______, LT(_LOWER, KC_SPC),_______,LT(_RAISE, KC_ENT),KC_RGUI,KC_RALT, KC_LEFT,KC_RGHT
+    KC_TAB,  KC_Q,    KC_W,    KC_E,    KC_R,    KC_T,                       KC_Y,      KC_U,    KC_I,    KC_O,    KC_P,    KC_BSPC,
+    KC_LCTL, KC_A,    KC_S,    KC_D,    KC_F,    KC_G,                       KC_H,      KC_J,    KC_K,    KC_L,    KC_SCLN, KC_QUOT,
+    KC_LSFT, KC_Z,    KC_X,    KC_C,    KC_V,    KC_B,                       KC_N,      KC_M,    KC_COMM, KC_DOT,  KC_SLSH, KC_DEL,
+    _______, KC_ESC,  KC_LALT, KC_LGUI, _______, LT(_LOWER, KC_SPC),_______, LT(_RAISE, KC_ENT), KC_RGUI, KC_RALT, KC_LEFT, KC_RGHT
 ),
 
 /* Raise
@@ -96,7 +96,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 [_LOWER] = LAYOUT_planck_grid(
     KC_ESC,  KC_1,    KC_2,    KC_3,    KC_4,    KC_5,    KC_6,    KC_7,    KC_8,    KC_9,    KC_0,    XP(0,1),
     KC_LCTRL,KC_MUTE, KC_MPRV, KC_MNXT, KC_MPLY, KC_VOLU, KC_LEFT, KC_DOWN, KC_UP,   KC_RGHT, XP(4,5), XP(2,3),
-    KC_LSFT, KC_BRIU, KC_BRID, KC_PGDN, KC_PGUP, KC_VOLD, KC_HOME, KC_END,  KC_COMM, KC_DOT,  _______, KC_DEL,
+    KC_LSFT, KC_BRID, KC_BRIU, KC_PGDN, KC_PGUP, KC_VOLD, KC_HOME, KC_END,  KC_COMM, KC_DOT,  _______, KC_DEL,
     _______, _______, _______, _______, _______, _______, _______, _______, KC_RGUI, KC_RALT, KC_VOLU, KC_MPLY
 ),
 
@@ -109,7 +109,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  * |------+------+------+------+------+------+------+------+------+------+------+------|
  * |      |Voice-|Voice+|Mus on|Musoff|MIDIon|MIDIof|TermOn|TermOf|      |      |      |
  * |------+------+------+------+------+------+------+------+------+------+------+------|
- * |      |      |      |      |      |             |      |      |      |      |      |
+ * |      |      |      |      |             |             |      |      |      |      |
  * `-----------------------------------------------------------------------------------'
 */
 [_ADJUST] = LAYOUT_planck_grid(
@@ -166,6 +166,7 @@ uint16_t muse_counter = 0;
 uint8_t muse_offset = 70;
 uint16_t muse_tempo = 50;
 
+
 bool encoder_update_user(uint8_t index, bool clockwise) {
   if (muse_mode) {
     if (IS_LAYER_ON(_RAISE)) {
@@ -186,17 +187,17 @@ bool encoder_update_user(uint8_t index, bool clockwise) {
       #ifdef MOUSEKEY_ENABLE
         tap_code(KC_MS_WH_DOWN);
       #else
-        tap_code(KC_PGDN);
+        tap_code(KC_DOWN);
       #endif
     } else {
       #ifdef MOUSEKEY_ENABLE
         tap_code(KC_MS_WH_UP);
       #else
-        tap_code(KC_PGUP);
+        tap_code(KC_UP);
       #endif
     }
   }
-    return true;
+    return false;
 }
 
 bool dip_switch_update_user(uint8_t index, bool active) {
