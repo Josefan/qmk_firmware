@@ -56,11 +56,11 @@ enum custom_keycodes {
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     /* Base */
     [_BASE] = LAYOUT(
-    KC_T,   KC_A,   KC_B,   KC_C,   SPOTIFY,\
-            KC_E,   KC_F,   KC_G,   DISCORD,\
-            KC_I,   KC_J,   KC_K,   DEBUG,\
-            KC_M,   KC_N,   KC_O,\
-            KC_P,   KC_Q,   KC_R,   RESET\
+    KC_LWIN,KC_MPRV,KC_MNXT, KC_MPLY,SPOTIFY,\
+            KC_VOLD,KC_VOLU, KC_MUTE,DISCORD,\
+            KC_LEFT,KC_RIGHT,KC_SPC, KC_ENT,\
+            KC_LCTL,KC_W,    KC_T,   \
+            KC_BRID,KC_BRIU, _______,KC_ENT\
 
     ),
     [_MUSIC] = LAYOUT(
@@ -76,7 +76,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
             KC_P7,   KC_P8,   KC_P9,   KC_PMNS,\
             KC_P4,   KC_P5,   KC_P6,   KC_PPLS,\
             KC_P1,   KC_P2,   KC_P3,\
-            KC_P0,   KC_P0,   KC_PDOT, KC_ENT\
+            KC_P0,   KC_P0,   KC_PDOT, RESET\
 
     )
 };
