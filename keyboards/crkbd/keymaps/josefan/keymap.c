@@ -31,6 +31,17 @@ const uint32_t PROGMEM unicode_map[] = {
     0x00B0   // °
 };
 
+// Tap Dance declarations
+enum {
+    TD_ALT_LWR,
+};
+
+// Tap Dance definitions
+tap_dance_action_t tap_dance_actions[] = {
+    // Tap once for Alt, twice to toggle lower
+    [TD_ALT_LWR] = ACTION_TAP_DANCE_DOUBLE(KC_RALT, TG(1)),
+};
+
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   [0] = LAYOUT_split_3x6_3(
   //,-----------------------------------------------------.                    ,-----------------------------------------------------.
@@ -40,7 +51,7 @@ MT(MOD_LCTL, KC_ESC),KC_A,KC_S,  KC_D,    KC_F,    KC_G,                        
   //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
       KC_LSFT, KC_Z,    KC_X,    KC_C,    KC_V,    KC_B,                         KC_N,    KC_M,    KC_COMM, KC_DOT,  KC_SLSH, KC_DEL,
   //|--------+--------+--------+--------+--------+--------+--------|  |--------+--------+--------+--------+--------+--------+--------|
-                                          KC_LGUI, MO(1),   KC_SPC,     KC_ENT,  MO(2),   KC_RALT
+                                          KC_LGUI, MO(1),   KC_SPC,     KC_ENT,  MO(2),   TD(TD_ALT_LWR)
                                       //`--------------------------'  `--------------------------'
 
   ),
@@ -53,7 +64,7 @@ MT(MOD_LCTL, KC_ESC),KC_A,KC_S,  KC_D,    KC_F,    KC_G,                        
   //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
       KC_LSFT, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, KC_PGDN,                      KC_HOME, KC_END,  _______, _______, _______, KC_DEL,
   //|--------+--------+--------+--------+--------+--------+--------|  |--------+--------+--------+--------+--------+--------+--------|
-                                          KC_LGUI, _______, KC_SPC,     KC_ENT,  MO(3),   KC_RALT
+                                          KC_LGUI, _______, KC_SPC,     KC_ENT,  MO(3),   TG(1)
                                       //`--------------------------'  `--------------------------'
   ),
 
